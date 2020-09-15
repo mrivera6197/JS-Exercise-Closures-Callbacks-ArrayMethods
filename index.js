@@ -63,7 +63,7 @@ function inning(min, max){
 
 }
 
-console.log(inning(0, 2));
+// console.log(inning(0, 2));
 
 /* Task 3: finalScore()
 
@@ -79,11 +79,22 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(func, number){
+function finalScore(cb, number){
 
-  
+  homeScore = 0; 
+  awayScore = 0;
 
+  for (let i = 0; i < number; i++){
+    homeScore += cb(0, 2);
+    awayScore += cb(0, 2);
+    }
+    return {
+      'Home': homeScore,
+      'Away': awayScore
+  }
 }
+
+// console.log(finalScore(inning, 9));
 
 /* Task 4: 
 
@@ -107,8 +118,31 @@ and returns the score at each pont in the game, like so:
 
 Final Score: awayTeam - homeTeam */
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function getInningScore(cb, number){
+
+  homeScore = 0; 
+  awayScore = 0;
+
+  let innings = [];
+  let numInning = 0; 
+
+  for (let i = 0; i < number; i++){ 
+
+    homeScore += cb(0, 2);
+    awayScore += cb(0, 2);
+    numInning ++;
+    innings.push({
+      'inning': `${numInning}`,
+      'Score': `${awayScore} - ${homeScore}`,
+      // 'Home': homeScore,
+      // 'Away': awayScore
+  })
+    }
+    return innings;
+
 }
+
+console.log(getInningScore(inning, 9));
+
 
 
